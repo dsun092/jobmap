@@ -77,4 +77,11 @@ function Install_Os_Packages
     sudo apt-get --force-yes --yes install ${Packages[*]}
     echo -e
 }
+
+function Install_Python_Packages
+{
+    Log_Info "Installing python web scrapping packages"
+    sudo pip install request lxml bs4
+}
+
 Install_Os_Packages
