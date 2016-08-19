@@ -18,7 +18,7 @@ readonly Color_blue="${Color_switch}0;34m"
 readonly Color_green="${Color_switch}1;32m"
 
 declare Django_version="1.8.5"
-declare -a Packages=(python-pip python-dev libpq-dev postgresql postgresql-contrib nginx postgis libgeos-dev gdal-bin linux-headers-$(uname -r) build-essential dkms)
+declare -a Packages=(python-pip python-dev python-lxml libpq-dev postgresql postgresql-contrib nginx postgis libgeos-dev gdal-bin linux-headers-$(uname -r) build-essential dkms)
 
 
 function Usage
@@ -81,7 +81,7 @@ function Install_Os_Packages
 function Install_Python_Packages
 {
     Log_Info "Installing python web scrapping packages"
-    sudo pip install request lxml bs4
+    sudo pip install request bs4
 }
 
 Install_Os_Packages
