@@ -115,12 +115,7 @@ function Setup_Nginx
 function Install_Python_Packages
 {
     Log_Info "Installing python web scrapping packages"
-    sudo pip install request bs4 pyramid gunicorn
-}
-
-function Pyramid_Setup
-{
-
+    sudo pip install requests bs4
 }
 
 

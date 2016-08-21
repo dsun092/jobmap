@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as BS
 from xml_fetcher import XML_Fetcher
+import json
 
 class XML_Parser(object):
 	""" Class created to parse XML file from a url and return list of dictionaries

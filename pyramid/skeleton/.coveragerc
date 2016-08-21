@@ -1,3 +1,0 @@
-[run]
-source = skeleton
-omit = skeleton/test*
