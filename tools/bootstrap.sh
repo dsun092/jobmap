@@ -74,14 +74,56 @@ function Log_Success
 function Install_Os_Packages
 {
     Log_Info "Installing Packages: ${Packages[*]}"
+    sudo apt-get update
     sudo apt-get --force-yes --yes install ${Packages[*]}
     echo -e
 }
 
+function Setup_Nginx
+{
+    # See: http://smotko.si/nginx-static-file-problem/
+    #sudo sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
+    sudo mv /vagrant/tools/jobmap /etc/nginx/sites-available/jobmap
+    if [ ! -f /etc/nginx/sites-enabled/jobmap ]; then
+        sudo ln -s /etc/nginx/sites-available/jobmap /etc/nginx/sites-enabled
+    fi
+
+    sudo chmod 777 /var/log/nginx
+
+    if [ ! -f /var/log/nginx/access.log ]; then
+        sudo touch /var/log/nginx/access.log
+        sudo chmod 666 /var/log/nginx/access.log
+    fi
+
+    if [ ! -f /var/log/nginx/error.log ]; then
+        sudo touch /var/log/nginx/error.log
+        sudo chmod 666 /var/log/nginx/error.log
+    fi
+
+    if [ ! -d /etc/nginx/ssl ]; then
+        sudo mkdir /etc/nginx/ssl
+        sudo cp /vagrant/tools/server.key /etc/nginx/ssl/server.key
+        sudo cp /vagrant/tools/server.crt /etc/nginx/ssl/server.crt
+    fi
+
+    Log_Info "Starting nginx"
+    sudo service nginx restart
+    echo -e
+}
+
+
 function Install_Python_Packages
 {
     Log_Info "Installing python web scrapping packages"
-    sudo pip install request bs4
+    sudo pip install request bs4 pyramid gunicorn
 }
 
+function Pyramid_Setup
+{
+
+}
+
+
+
 Install_Os_Packages
+Install_Python_Packages

@@ -43,8 +43,10 @@ class XML_Parser(object):
 
 		print(descendant_tag_to_string_list_of_dicts)
 
-url = 'http://api.indeed.com/ads/apisearch?publisher=488027196709698&q=java&l=austin%2C+tx&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0(Firefox)&v=2'
+url = 'http://api.indeed.com/ads/apisearch?publisher=488027196709698&q=&l=los%2Cangeles%2C+ca&sort=&radius=&st=&jt=&v=2&userip=1.2.3.4&start='
 parent_tag = 'result'
-desc_tag = ['longitude', 'latitude']
+desc_tag = ['longitude', 'latitude', 'jobtitle', 'company', 'state', 'city']
 parser = XML_Parser(url, parent_tag, desc_tag)
 parser.parse_xml_file()
+
+
