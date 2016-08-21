@@ -1,4 +1,7 @@
-import requests, bs4, lxml
+import lxml
+from bs4 import BeautifulSoup as BS
+
+
 
 def PrintParseTree(tree):
 	job_lists = tree.select('result')
